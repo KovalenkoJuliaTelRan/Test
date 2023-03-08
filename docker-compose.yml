@@ -1,0 +1,23 @@
+version: "3"
+services: 
+  cars-jpa: 
+    image: kovalenkoyuliya/cars-jpa
+    container_name: cars-jpa
+    environment:
+      - spring.datasource.url=jdbc:mysql://db:3306/java1317?useSSL=false
+      - spring.datasource.username=root
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+      
+  db:
+    image: mysql:latest
+    container_name: cars-db
+    environment:
+      - MYSQL_DATABASE=java1317
+      - MYSQL_ALLOW_EMPTY_PASSWORD=1
+    ports:
+      - "3306:3306"
+
+      
